@@ -1,0 +1,55 @@
+services:
+  - type: web
+    name: ministry-of-friendship-api
+    runtime: node
+    plan: free
+    branch: master
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 22.21.1
+      - key: NODE_ENV
+        value: production
+      - key: CORS_ORIGIN
+        value: https://ministry-of-friendship-ui.onrender.com
+      - key: PUBLIC_SERVER_URL
+        value: https://ministry-of-friendship-ui.onrender.com/api
+      - key: APP_ID
+        sync: false
+      - key: DATABASE_URI
+        sync: false
+      - key: MASTER_KEY
+        sync: false
+      - key: CLERK_PUBLISHABLE_KEY
+        sync: false
+      - key: CLERK_SECRET_KEY
+        sync: false
+  - type: web
+    name: ministry-of-friendship-api-test
+    runtime: node
+    plan: free
+    branch: develop
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 22.21.1
+      - key: NODE_ENV
+        value: production
+      - key: CORS_ORIGIN
+        value: https://ministry-of-friendship-ui-test.onrender.com
+      - key: PUBLIC_SERVER_URL
+        value: https://ministry-of-friendship-ui-test.onrender.com/api
+      - key: APP_ID
+        sync: false
+      - key: DATABASE_URI
+        sync: false
+      - key: MASTER_KEY
+        sync: false
+      - key: CLERK_PUBLISHABLE_KEY
+        sync: false
+      - key: CLERK_SECRET_KEY
+        sync: false
